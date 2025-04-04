@@ -1,6 +1,6 @@
 clc;clear
 frameTransmissionTime = 1e-3; % 1ms
-AveragePacketArrivalRate = [100 200 350 500 600 750 850 1000 1500 2000 3000 5000 7500 ]; %  in Packets per second 
+AveragePacketArrivalRate = [100 200 350 500 600 750 850 1000 1500 2000 3000]; %  in Packets per second 
 numUsers = 1200;
 OfferedLoad = AveragePacketArrivalRate*frameTransmissionTime; % Normalized Offered Load 
 
@@ -162,7 +162,7 @@ for m = 1:length(AveragePacketArrivalRate)
 end
 
 plot(OfferedLoad, 100*OfferedLoad.*exp(-OfferedLoad), OfferedLoad, 100*Throughput)
-legend('Theoretical Slotted ALOHA','Max Retransmissions = 1','Max Retransmissions = 3');
+legend('Theoretical Pure ALOHA', 'No Retransmissions ', 'Max Retransmissions = 1','Max Retransmissions = 3');
 title("Slotted ALOHA: Throughput vs. Offered Load")
 ylabel("Throughput (%)")
 xlabel("Total Offered Load")
