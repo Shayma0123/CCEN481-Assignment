@@ -162,7 +162,7 @@ for m = 1:length(AveragePacketArrivalRate)
 end
 
 plot(OfferedLoad, 100*OfferedLoad.*exp(-OfferedLoad), OfferedLoad, 100*Throughput)
-legend('Theoretical Pure ALOHA', 'No Retransmissions ', 'Max Retransmissions = 1','Max Retransmissions = 3');
+legend('Theoretical Slotted ALOHA', 'No Retransmissions ', 'Max Retransmissions = 1','Max Retransmissions = 3');
 title("Slotted ALOHA: Throughput vs. Offered Load")
 ylabel("Throughput (%)")
 xlabel("Total Offered Load")
