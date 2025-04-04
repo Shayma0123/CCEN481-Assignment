@@ -165,7 +165,7 @@ for m = 1:length(AveragePacketArrivalRate)
     end
 end
 plot(OfferedLoad, 100*OfferedLoad.*exp(-2*OfferedLoad), OfferedLoad, 100*ThroughputMatrix(1:length(maxRetransmissions),:))
-legend('Theoretical Pure ALOHA','Max Retransmissions = 1','Max Retransmissions = 3','Max Retransmissions = 7', 'Max Retransmissions = 10', 'Max Retransmissions = 12')
+legend('Theoretical Pure ALOHA', 'No Retransmissions ', 'Max Retransmissions = 1','Max Retransmissions = 3')
 title("Pure ALOHA: Throughput vs. Offered Load")
 ylabel("Throughput (%)")
 xlabel("Total Offered Load")
