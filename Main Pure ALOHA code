@@ -81,7 +81,8 @@ for m = 1:length(AveragePacketArrivalRate)
     
 
 
-            for q = 2: length(packetArrivalLog)
+            while (q < = length(packetArrivalLog) & packetArrivalLog(q,1) < sim_iteration)
+                q = q+1;
                 
 
 
