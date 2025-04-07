@@ -1,0 +1,38 @@
+function [packetArrivalLog, randomTransmittingStations] =  packet_arr_n_trans_stat_lis(currentTime, numUsers, packetArrivalLog, sim_iteration, AveragePacketArrivalRate)
+
+    packetArrivalLog_new =[];
+           
+    if (sim_iteration ~= 1) 
+
+         [rows, c] = size(packetArrivalLog);
+         % Adds to the packetArrivalLog vector the transmission times of the retransmitting stations 
+         % in case the queqing time is greater than the previous simulation iteratin window (1 second) 
+         % when packetArrivalLog(o,2) = 1, a station is retransmitting during this the transmission time
+
+         for o = 1:rows
+
+             if (packetArrivalLog(o,1) >= sim_iteration-1) && (packetArrivalLog(o,2) ~= 0)
+                 packetArrivalLog_new = [packetArrivalLog_new; packetArrivalLog(o,:)]; 
+     
+             end
+         end
+         packetArrivalLog = [packetArrivalLog_new; currentTime 0];
+    end
+
+    % Creates the packet arrival log vector
+    % The exponential distribution generates the inter arrival time between 
+    % two given packets
+    % Accumalting the generated interarrival time with the previous log
+    % produces the time vector with the all the packets logs
+    
+    while (packetArrivalLog(end, 1) <=sim_iteration)
+
+        T = exprnd(1/AveragePacketArrivalRate,1,1);
+        t_bef = packetArrivalLog(end, 1);
+        packetArrivalLog = [packetArrivalLog;t_bef+T  0];
+        
+    end
+    packetArrivalLog = sortrows(packetArrivalLog, 1, 'ascend');
+    randomTransmittingStations = randi(numUsers, 100000,1);
+end
+
